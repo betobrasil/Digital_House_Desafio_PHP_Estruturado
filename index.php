@@ -115,93 +115,100 @@ if($_POST) {
 
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet"/>
-    <title>*** Cadastrar Produto ***</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet"/>
+        <title>*** Cadastrar Produto ***</title>
+    </head>
 
-<body>
+    <body>
 
-<div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-7">
-                <h1>Todos os produtos</h1>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Preço</th>
-                        </tr>
-                    </thead>
+        <div class="container mt-5">
 
-                    </tbody>
-                        <?php if(isset($produtosRegistrados) && $produtosRegistrados != []) { ?>
-                        <?php foreach($produtosRegistrados as $produtoRegistrado) { ?>
-                        <tr>
-                            <td> <a href="PaginaIndividual.php?id= <?php echo $produtoRegistrado["id"]; ?>" > <?php echo $produtoRegistrado["nome"]; ?> </a> </td>
-                            <td> <?php echo $produtoRegistrado["categoria"]; ?> </td>
-                            <td> <?php echo "R$".$produtoRegistrado["preco"]; ?> </td>
-                       <!-- <td> <a class="btn btn-primary btn-sm href="EditarProduto.php">&nbsp; Editar&nbsp;&nbsp;</a> <a class="btn btn-danger btn-sm" href="ApagarProduto.php">Apagar</a></td> -->
-                        </tr>
-                        <?php } ?> 
-                        <?php } else { ?>
-                            <h1> Não tem produto cadastrado  :-( </h1>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-    
-            <div class="col-lg-5 bg-light">
-                <form class="p-5" method="post" enctype="multipart/form-data">
-                    <h4>Cadastrar produto</h4>
+            <div class="row">
 
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="nomeProduto">Nome</label>
-                        <input type="text" name="nomeProduto" class="form-control" placeholder="">
-                    </div>
+                <!-- Início da Lista (Tabela) onde é exibido os dados dos produtos cadastrados. -->
+                <div class="col-lg-7">
+                    <h1>Todos os produtos</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Preço</th>
+                            </tr>
+                        </thead>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="categoriaProduto">Categoria</label>
-                        <select class="form-control" name="categoriaProduto">
-                            <option disabled selected>Selecione uma categoria...</option>
-                            <?php foreach ($categorias as $categoria) { ?>
-                            <option value="<?php echo $categoria?>"> <?php echo $categoria ?> </option>
+                        </tbody>
+                            <?php if(isset($produtosRegistrados) && $produtosRegistrados != []) { ?>
+                            <?php foreach($produtosRegistrados as $produtoRegistrado) { ?>
+                            <tr>
+                                <td> <a href="PaginaIndividual.php?id= <?php echo $produtoRegistrado["id"]; ?>" > <?php echo $produtoRegistrado["nome"]; ?> </a> </td>
+                                <td> <?php echo $produtoRegistrado["categoria"]; ?> </td>
+                                <td> <?php echo "R$".$produtoRegistrado["preco"]; ?> </td>
+                        <!-- <td> <a class="btn btn-primary btn-sm href="EditarProduto.php">&nbsp; Editar&nbsp;&nbsp;</a> <a class="btn btn-danger btn-sm" href="ApagarProduto.php">Apagar</a></td> -->
+                            </tr>
+                            <?php } ?> 
+                            <?php } else { ?>
+                                <h1> Não tem produto cadastrado  :-( </h1>
                             <?php } ?>
-                        </select>
-                    </div>
+                        </tbody>
+                    </table>
+                <!-- FIM da Lista (Tabela) onde é exibido os dados dos produtos cadastrados. -->    
+                </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="descricaoProduto">Descrição</label>
-                        <textarea class="form-control" name="descricaoProduto" rows="3"></textarea>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="quantidadeProduto">Quantidade</label>
-                        <input type="number" name="quantidadeProduto" class="form-control" placeholder="">
-                    </div>
+                <!-- INÍCIO do formulário para cadastrar os produtos. -->
+                <div class="col-lg-5 bg-light">
+                    <form class="p-5" method="post" enctype="multipart/form-data">
+                        <h4>Cadastrar produto</h4>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="precoProduto">Preço</label>
-                        <input type="number" name="precoProduto" class="form-control" placeholder="">
-                    </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="nomeProduto">Nome</label>
+                            <input type="text" name="nomeProduto" class="form-control" placeholder="" required="required">
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="imagemProduto">Foto do produto</label>
-                        <input type="file" class="form-control-file" name="imagemProduto">
-                    </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="categoriaProduto">Categoria</label>
+                            <select class="form-control" name="categoriaProduto" required="required">
+                                <option disabled selected></option>
+                                <?php foreach ($categorias as $categoria) { ?>
+                                <option value="<?php echo $categoria?>"> <?php echo $categoria ?> </option>
+                                <?php } ?>
+                            </select>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">ENVIAR</button>
-                </form>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="descricaoProduto">Descrição</label>
+                            <textarea class="form-control" name="descricaoProduto" rows="3" required="required"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="quantidadeProduto">Quantidade</label>
+                            <input type="number" min='0' max='999' name="quantidadeProduto" value = '0' class="form-control" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="precoProduto">Preço</label>
+                            <input type="number" min='0' step="0.01" name="precoProduto" value = '0' class="form-control" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="imagemProduto">Foto do produto</label>
+                            <input type="file" class="form-control-file" name="imagemProduto" required="required">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">ENVIAR</button>
+                    </form>
+
+                 <!-- FIM do formulário para cadastrar os produtos. -->   
+                </div>
             </div>
         </div>
-    </div>
-
-
-</body>
+    
+    </body>
 
 </html>
